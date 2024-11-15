@@ -1,0 +1,83 @@
+/* 기본적인 body 스타일링 */
+body {
+    margin: 0;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+    background-size: cover;
+    background-position: center;
+    text-align: center; /* 텍스트를 중앙 정렬 */
+    position: relative; /* 상대적 위치 지정 */
+    font-family: 'Noto Sans', sans-serif; /* 둥글고 부드러운 글씨체 */
+}
+
+/* 왼쪽 상단에 배치될 검색창과 버튼 */
+.address-container {
+    position: absolute; /* 절대 위치 */
+    top: 20px;
+    left: 20px;
+    text-align: left;
+}
+
+/* 검색창 스타일 */
+input[type="text"] {
+    padding: 10px;
+    margin: 10px 0;
+    font-size: 16px;
+    font-family: 'Noto Sans', sans-serif; /* 검색창도 둥글고 부드러운 글씨체 */
+    width: 300px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+}
+
+button {
+    padding: 10px 20px;
+    font-size: 16px;
+    font-family: 'Noto Sans', sans-serif; /* 버튼도 둥글고 부드러운 글씨체 */
+    border: none;
+    background-color: #000;
+    color: white;
+    cursor: pointer;
+    border-radius: 5px;
+}
+
+button:hover {
+    background-color: #666;
+}
+
+/* 날씨 텍스트 크기 설정 */
+#weather {
+    font-size: 20px;
+    font-weight: bold;
+    font-family: 'Noto Sans', sans-serif;
+}
+
+/* 지역 이름 텍스트 크기 설정 */
+#location {
+    font-size: 30px;
+    font-weight: bold;
+    font-family: 'Noto Sans', sans-serif;
+    margin-bottom: 10px; /* 지역과 날씨 사이 간격 */
+}
+
+/* 날짜와 시간 크기 설정 */
+#current-date, #current-time {
+    font-size: 20px;
+    font-weight: bold;
+    margin: 0;  /* 마진 제거 */
+    font-family: 'Noto Sans', sans-serif;
+}
+
+/* 날짜와 시간 사이의 간격 없애기 */
+#current-date {
+    margin-bottom: 5px; /* 아래쪽에만 작은 간격을 두고, 위쪽은 붙여서 표시 */
+}
+
+/* 중앙에 정렬되는 텍스트 스타일 */
+.center-text {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}

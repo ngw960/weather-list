@@ -1,0 +1,207 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>WeatherList</title>
+
+    <!-- Open Graph 설정 -->
+    <meta property="og:title" content="날씨 조회 앱" />
+
+    <!-- PWA Manifest 파일 링크 -->
+    <link rel="manifest" href="{{ url_for('static', path='manifest.json') }}">
+
+    <meta name="theme-color" content="#000000"> <!-- 웹 앱의 테마 색상 -->
+
+    <link rel="stylesheet" href="{{ url_for('static', path='css/weather-list.css') }}">
+
+    <!-- Google Fonts에서 Noto Sans 로드 -->
+    <link href="https://fonts.googleapis.com/css2?family=Noto+Sans&display=swap" rel="stylesheet">
+
+    <meta name="theme-color" content="#000000"> <!-- 앱의 테마 색상 -->
+    <link rel="manifest" href="{{ url_for('static', path='manifest.json') }}"> <!-- Manifest 파일 링크 -->
+    <link rel="icon" href="{{ url_for('static', path='icon/192x192.png') }}" sizes="192x192"> <!-- 앱 아이콘 -->
+
+</head>
+
+<body>
+    <div class="address-container">
+        <input type="text" id="UserAddress" name="UserAddress" placeholder="주소를 입력해 주세요" required readonly>
+        <button type="button" onclick="openDaumPostcode()">주소 찾기</button>
+    </div>
+
+    <div class="center-text">
+        <p id="location"></p> <!-- 지역 이름 출력 -->
+        <p id="weather"></p> <!-- 날씨 정보 출력 -->
+        <p id="current-date"></p> <!-- 현재 날짜 출력 -->
+        <p id="current-time"></p> <!-- 현재 시간 출력 -->
+    </div>
+
+    <!-- 다음 주소 검색 API 추가 -->
+    <script src="https://t1.daumcdn.net/mapjsapi/bundle/postcode/prod/postcode.v2.js"></script>
+
+    <!-- 카카오 지도 API 추가 -->
+    <script
+        src="https://dapi.kakao.com/v2/maps/sdk.js?appkey=cec3ea3fbef734c296ac5c7579283535&libraries=services"></script>
+
+    <script>
+        // 서비스 워커 등록
+        if ('serviceWorker' in navigator) {
+            window.addEventListener('load', function () {
+                navigator.serviceWorker.register('/service-worker.js')
+                    .then(function (registration) {
+                        console.log('서비스 워커 등록 성공:', registration);
+                    })
+                    .catch(function (error) {
+                        console.log('서비스 워커 등록 실패:', error);
+                    });
+            });
+        }
+
+        // 페이지가 로드될 때 로컬 스토리지에서 주소를 불러오기
+        window.onload = function () {
+            var savedAddress = localStorage.getItem('userAddress');
+            if (savedAddress) {
+                document.getElementById('UserAddress').value = savedAddress;
+                // 주소가 로드되면 바로 위도/경도로 변환
+                convertAddressToCoordinates(savedAddress);
+            }
+            // 현재 날짜 및 시간 표시
+            displayCurrentDateAndTime();
+
+            // 기본 배경 설정: 날씨 정보가 없을 경우 default.webp 사용
+            changeBackgroundImage('default');
+        };
+
+        // 주소 찾기 버튼 클릭 시 다음 주소 검색 API 실행
+        function openDaumPostcode() {
+            new daum.Postcode({
+                oncomplete: function (data) {
+                    // 선택된 주소를 input 필드에 넣기
+                    var userAddress = data.address;
+                    document.getElementById('UserAddress').value = userAddress;
+
+                    // 선택한 주소를 로컬 스토리지에 저장
+                    localStorage.setItem('userAddress', userAddress);
+
+                    // 주소가 변경되면 바로 위도/경도로 변환
+                    convertAddressToCoordinates(userAddress);
+                }
+            }).open();
+        }
+
+        // 주소로 위도/경도 변환
+        function convertAddressToCoordinates(address) {
+            if (!address || address.trim() === "") {
+                document.getElementById('coordinates').innerText = "주소를 입력해 주세요.";
+                return;
+            }
+
+            // 카카오 지도 API Geocoding 서비스 사용
+            var geocoder = new kakao.maps.services.Geocoder();
+            geocoder.addressSearch(address, function (result, status) {
+                if (status === kakao.maps.services.Status.OK) {
+                    // 첫 번째 결과를 사용
+                    var latitude = result[0].y;
+                    var longitude = result[0].x;
+                    var region = result[0].address.region_1depth_name; // 시/도 이름 추출
+
+                    // 지역 이름 출력
+                    document.getElementById('location').innerText = region;
+
+                    // 날씨 정보를 가져오는 함수 호출
+                    getWeather(latitude, longitude);
+                } else {
+                    document.getElementById('coordinates').innerText = "주소를 찾을 수 없습니다.";
+                }
+            });
+        }
+
+        // WeatherAPI를 사용해 날씨 정보 가져오기
+        function getWeather(latitude, longitude) {
+            var apiKey = 'd1d80799329d482a8ea115148241111';
+            var url = `https://api.weatherapi.com/v1/current.json?key=${apiKey}&q=${latitude},${longitude}&aqi=no`;
+
+            fetch(url)
+                .then(response => response.json())
+                .then(data => {
+                    if (data && data.current) {
+                        var temperature = data.current.temp_c; // 섭씨 온도
+                        var condition = data.current.condition.text; // 날씨 상태
+
+                        // 날씨 상태에 따른 배경 이미지 변경
+                        changeBackgroundImage(condition);
+
+                        // 날씨 정보 출력
+                        document.getElementById('weather').innerHTML = `
+                            ${temperature}°C<br>
+                            ${condition}<br>
+                        `;
+                    } else {
+                        document.getElementById('weather').innerText = "날씨 정보를 가져올 수 없습니다.";
+                        // 날씨 정보가 없을 경우 기본 이미지 설정
+                        changeBackgroundImage('default');
+                    }
+                })
+                .catch(error => {
+                    console.error('Weather API 호출 오류:', error);
+                    document.getElementById('weather').innerText = "날씨 정보를 가져올 수 없습니다.";
+                    // 날씨 API 호출 오류가 있을 경우 기본 이미지 설정
+                    changeBackgroundImage('default');
+                });
+        }
+
+        function changeBackgroundImage(condition) {
+            let backgroundImage = '';
+            if (condition === "Clear") {
+                backgroundImage = 'url("/static/image/default.webp")';
+            } else if (condition === 'Sunny') {
+                backgroundImage = 'url("/static/image/Clear.webp")';
+            } else if (condition === "Cloudy" || condition === "Partly cloudy") {
+                backgroundImage = 'url("/static/image/Clouds.webp")';
+            } else if (condition === "Rain" || condition === "Heavy rain") {
+                backgroundImage = 'url("/static/image/Rain.webp")';
+            } else if (condition === 'default') {
+                backgroundImage = 'url("/static/image/default.webp")'; // 기본 이미지
+            }
+
+            // 배경 이미지 설정
+            document.body.style.backgroundImage = backgroundImage;
+            document.body.style.backgroundSize = "cover";
+            document.body.style.backgroundPosition = "center";
+        }
+
+        // 현재 날짜와 시간을 실시간으로 표시하는 함수
+        function displayCurrentDateAndTime() {
+            function updateDateTime() {
+                var now = new Date();
+
+                // 날짜 (MM/DD 형식)
+                var month = (now.getMonth() + 1).toString().padStart(2, '0');  // 월은 0부터 시작하므로 1을 더함
+                var day = now.getDate().toString().padStart(2, '0');
+                var date = `${month}/${day}`;
+
+                // 요일
+                var weekdays = ["Sun", "Mon", "Tue", "Wed", "Thu", "Fri", "Sat"];
+                var weekday = weekdays[now.getDay()];  // 요일 가져오기
+
+                // 시간 (HH:MM:SS 형식)
+                var hours = now.getHours().toString().padStart(2, '0');
+                var minutes = now.getMinutes().toString().padStart(2, '0');
+                var seconds = now.getSeconds().toString().padStart(2, '0');
+                var time = `${hours}:${minutes}:${seconds}`;
+
+                // 날짜와 시간 출력
+                document.getElementById('current-date').innerText = `${date} ${weekday}`;
+                document.getElementById('current-time').innerText = `${time}`;
+            }
+
+            // 1초마다 날짜와 시간을 업데이트
+            setInterval(updateDateTime, 1000);
+            updateDateTime(); // 페이지 로드 시 첫 번째 날짜 및 시간 표시
+        }
+    </script>
+</body>
+
+</html>
