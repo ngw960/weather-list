@@ -1,0 +1,77 @@
+/* 전체 화면에 배경 이미지 꽉 차게 */
+body {
+    margin: 0;
+    padding: 0;
+    height: 100vh; /* 화면 전체 높이 */
+    background-size: cover; /* 배경 이미지를 화면 크기에 맞게 조정 */
+    background-position: center center; /* 배경 이미지 중앙 정렬 */
+    background-attachment: fixed; /* 배경 고정 */
+    display: flex;
+    justify-content: center;
+    align-items: center; /* 중앙에 내용 배치 */
+    flex-direction: column; /* 수직 배치 */
+}
+
+/* 주소 입력창 스타일 */
+.address-container {
+    margin-bottom: 20px; /* 주소 입력창과 다른 요소들 사이에 여백 */
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+/* 커스텀 입력창 스타일 */
+.custom-input-container {
+    margin-bottom: 20px; /* 커스텀 입력창과 다른 요소들 사이에 여백 */
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+/* placeholder 텍스트 색상 변경 */
+#customInput::placeholder {
+    color: black; /* placeholder 텍스트 색상 설정 */
+}
+
+/* 날씨 정보 출력 부분 스타일 */
+.weather-info-container {
+    display: flex;
+    flex-direction: column;
+    align-items: center; /* 중앙 정렬 */
+    text-align: center; /* 텍스트 중앙 정렬 */
+    color: black; /* 텍스트 색상 */
+}
+
+/* 각 요소 간의 간격을 설정 */
+input[type="text"] {
+    padding: 10px;
+    margin: 5px 0;
+    width: 300px;
+    font-size: 16px;
+    background-color: transparent; /* 배경을 투명하게 설정 */
+    border: 2px solid rgba(255, 255, 255, 0.5); /* 흰색 테두리, 투명도 50% */
+    color: black; /* 텍스트 색상 흰색 */
+    outline: none; /* 포커스 시 나타나는 테두리 제거 */
+}
+
+input[type="text"]:focus {
+    border-color: black; /* 포커스 시 테두리 색상 변경 */
+}
+
+button {
+    padding: 10px 20px;
+    font-size: 16px;
+    cursor: pointer;
+    margin-top: 10px;
+}
+
+p {
+    font-size: 18px;
+}
+
+/* 날짜와 시간이 붙도록 스타일 추가 */
+#current-date,
+#current-time {
+    display: inline-block; /* 한 줄에 표시되도록 */
+    margin: 0 5px; /* 날짜와 시간 사이 간격 설정 */
+}

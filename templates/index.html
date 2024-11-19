@@ -22,7 +22,7 @@
     <meta name="theme-color" content="#000000"> <!-- 앱의 테마 색상 -->
     <link rel="manifest" href="{{ url_for('static', path='manifest.json') }}"> <!-- Manifest 파일 링크 -->
     <link rel="icon" href="{{ url_for('static', path='icon/192x192.png') }}" sizes="192x192"> <!-- 앱 아이콘 -->
-
+    
 </head>
 
 <body>
@@ -33,7 +33,7 @@
 
     <!-- 새 입력칸 추가 (투명한 입력창) -->
     <div class="custom-input-container">
-        <input type="text" id="customInput" placeholder="여기에 내용을 입력하세요2" oninput="saveCustomInput()">
+        <input type="text" id="customInput" placeholder="여기에 내용을 입력하세요" oninput="saveCustomInput()">
     </div>
 
     <!-- 날씨 정보 출력 부분 -->
@@ -187,8 +187,6 @@
 
             // 배경 이미지 설정
             document.body.style.backgroundImage = backgroundImage;
-            document.body.style.backgroundSize = "cover";
-            document.body.style.backgroundPosition = "center";
         }
 
         // 현재 날짜와 시간을 실시간으로 표시하는 함수
