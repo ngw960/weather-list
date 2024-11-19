@@ -20,6 +20,11 @@ body {
     align-items: center;
 }
 
+/* UserAddress input 필드의 placeholder 텍스트 색상 변경 */
+#UserAddress::placeholder {
+    color: black; /* placeholder 텍스트 색상 검은색으로 설정 */
+}
+
 /* 커스텀 입력창 스타일 */
 .custom-input-container {
     margin-bottom: 20px; /* 커스텀 입력창과 다른 요소들 사이에 여백 */
