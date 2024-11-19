@@ -86,7 +86,7 @@ button:hover {
     color: black; /* 텍스트 색상 검은색 */
     width: 100%;
     display: flex;
-    flex-direction: column;
+    flex-direction: column; /* 세로로 배치 */
     align-items: center;
 }
 
