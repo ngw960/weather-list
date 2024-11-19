@@ -10,6 +10,7 @@ body {
     text-align: center;
     position: relative;
     font-family: 'Noto Sans', sans-serif;
+    flex-direction: column; /* 세로 정렬로 변경 */
 }
 
 /* 왼쪽 상단에 배치될 검색창과 버튼 */
@@ -129,8 +130,8 @@ button:hover {
 /* 모바일 기기 (최대 600px) */
 @media (max-width: 600px) {
     body {
-        flex-direction: column;
-        height: auto;
+        flex-direction: column;  /* 세로로 정렬 */
+        align-items: center; /* 중앙 정렬 */
     }
 
     /* 왼쪽 상단에 배치될 검색창과 버튼 */
@@ -158,6 +159,7 @@ button:hover {
     /* 커스텀 입력칸 스타일 */
     .custom-input-container {
         top: 5%;
+        width: 100%; /* 화면 너비에 맞추기 */
     }
 
     #customInput {
@@ -183,53 +185,5 @@ button:hover {
     /* 날짜와 시간 크기 설정 */
     #current-date, #current-time {
         font-size: 16px;
-    }
-}
-
-/* 태블릿 (최대 1024px) */
-@media (max-width: 1024px) {
-    .address-container {
-        top: 30px;
-        left: 30px;
-    }
-
-    /* 검색창 스타일 */
-    input[type="text"] {
-        width: 250px;
-    }
-
-    /* 버튼 스타일 */
-    button {
-        width: 250px;
-    }
-
-    /* 커스텀 입력칸 스타일 */
-    .custom-input-container {
-        top: 8%;
-    }
-
-    #customInput {
-        width: 70%;
-        font-size: 16px;
-    }
-
-    /* 날씨 텍스트 크기 설정 */
-    #weather {
-        font-size: 18px;
-    }
-
-    /* 날씨 정보 출력 영역 */
-    .weather-info-container p {
-        font-size: 17px;
-    }
-
-    /* 지역 이름 텍스트 크기 설정 */
-    #location {
-        font-size: 28px;
-    }
-
-    /* 날짜와 시간 크기 설정 */
-    #current-date, #current-time {
-        font-size: 18px;
     }
 }
