@@ -123,3 +123,87 @@ button:hover {
     justify-content: center;
     align-items: center;
 }
+
+/* 적응형 디자인: 화면 크기 변화에 따른 레이아웃 수정 */
+@media (max-width: 1200px) {
+    /* 큰 화면에서 작은 화면으로 넘어갈 때 */
+    input[type="text"], #customInput {
+        width: 80%; /* 화면 크기에 맞게 너비 조정 */
+    }
+
+    .address-container {
+        left: 10px; /* 왼쪽 여백을 더 줄여서 화면에 맞게 배치 */
+    }
+
+    .custom-input-container {
+        top: 5%; /* 화면 크기에 따라 입력칸 위치 조정 */
+    }
+
+    #location {
+        font-size: 26px; /* 화면 크기에 맞게 지역 이름 크기 축소 */
+    }
+
+    #weather, .weather-info-container p {
+        font-size: 18px; /* 날씨 및 텍스트 크기 축소 */
+    }
+}
+
+@media (max-width: 768px) {
+    /* 중간 크기 화면 (태블릿 등) */
+    input[type="text"], #customInput {
+        width: 90%; /* 태블릿에서 검색창과 입력칸 너비를 90%로 확장 */
+    }
+
+    .address-container {
+        top: 10px; /* 화면 크기에 따라 위치 조금 위로 조정 */
+        left: 5px; /* 왼쪽 여백을 더 줄여서 배치 */
+    }
+
+    #location {
+        font-size: 22px; /* 지역 이름 크기 더 줄임 */
+    }
+
+    #weather, .weather-info-container p {
+        font-size: 16px; /* 날씨 텍스트 크기 더 작게 */
+    }
+
+    .weather-info-container {
+        margin-top: 10px; /* 날씨 정보와 입력칸 간 간격 더 줄임 */
+    }
+}
+
+@media (max-width: 480px) {
+    /* 작은 화면 (모바일 등) */
+    body {
+        flex-direction: column; /* 세로 방향으로 레이아웃 변경 */
+        justify-content: flex-start;
+    }
+
+    .address-container {
+        top: 10px;
+        left: 10px;
+    }
+
+    .custom-input-container {
+        top: 5%; /* 위치 다시 조정 */
+        left: 50%;
+        transform: translateX(-50%);
+    }
+
+    input[type="text"], #customInput {
+        width: 95%; /* 모바일 화면에서 거의 전체 너비 사용 */
+        font-size: 14px; /* 텍스트 크기 조정 */
+    }
+
+    #location {
+        font-size: 18px; /* 모바일에서 지역 이름 크기 축소 */
+    }
+
+    #weather, .weather-info-container p {
+        font-size: 14px; /* 모바일 화면에서 텍스트 크기 더 줄임 */
+    }
+
+    .weather-info-container {
+        margin-top: 10px;
+    }
+}
