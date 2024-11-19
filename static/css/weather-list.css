@@ -2,20 +2,20 @@
 body {
     margin: 0;
     display: flex;
-    justify-content: center;
-    align-items: center;
+    flex-direction: column; /* 기본적으로 세로로 배치 */
+    justify-content: flex-start; /* 콘텐츠를 세로로 배치 */
+    align-items: center; /* 중앙 정렬 */
     height: 100vh;
     background-size: cover;
     background-position: center;
     text-align: center;
     position: relative;
     font-family: 'Noto Sans', sans-serif;
-    flex-direction: column; /* 세로 방향 레이아웃 */
 }
 
 /* 왼쪽 상단에 배치될 검색창과 버튼 */
 .address-container {
-    position: absolute; /* 절대 위치 */
+    position: absolute;
     top: 20px;
     left: 20px;
     text-align: left;
@@ -51,7 +51,6 @@ button:hover {
 
 /* 커스텀 입력칸 스타일 */
 .custom-input-container {
-    position: relative; /* position 변경 */
     margin-top: 20px; /* 상단 간격 */
     width: 80%; /* 화면 너비에 맞게 설정 */
     display: flex;
