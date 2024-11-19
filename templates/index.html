@@ -31,7 +31,13 @@
         <button type="button" onclick="openDaumPostcode()">주소 찾기</button>
     </div>
 
-    <div class="center-text">
+    <!-- 새 입력칸 추가 (투명한 입력창) -->
+    <div class="custom-input-container">
+        <input type="text" id="customInput" placeholder="여기에 내용을 입력하세요" oninput="saveCustomInput()">
+    </div>
+
+    <!-- 날씨 정보 출력 부분 -->
+    <div class="weather-info-container">
         <p id="location"></p> <!-- 지역 이름 출력 -->
         <p id="weather"></p> <!-- 날씨 정보 출력 -->
         <p id="current-date"></p> <!-- 현재 날짜 출력 -->
@@ -59,7 +65,7 @@
             });
         }
 
-        // 페이지가 로드될 때 로컬 스토리지에서 주소를 불러오기
+        // 페이지가 로드될 때 로컬 스토리지에서 주소와 커스텀 입력값을 불러오기
         window.onload = function () {
             var savedAddress = localStorage.getItem('userAddress');
             if (savedAddress) {
@@ -67,12 +73,25 @@
                 // 주소가 로드되면 바로 위도/경도로 변환
                 convertAddressToCoordinates(savedAddress);
             }
+
+            // 커스텀 입력값 로드
+            var savedCustomInput = localStorage.getItem('customInput');
+            if (savedCustomInput) {
+                document.getElementById('customInput').value = savedCustomInput;
+            }
+
             // 현재 날짜 및 시간 표시
             displayCurrentDateAndTime();
 
             // 기본 배경 설정: 날씨 정보가 없을 경우 default.webp 사용
             changeBackgroundImage('default');
         };
+
+        // 커스텀 입력값 저장 함수
+        function saveCustomInput() {
+            var customInputValue = document.getElementById('customInput').value;
+            localStorage.setItem('customInput', customInputValue);
+        }
 
         // 주소 찾기 버튼 클릭 시 다음 주소 검색 API 실행
         function openDaumPostcode() {
@@ -157,8 +176,8 @@
             if (condition === "Clear") {
                 backgroundImage = 'url("/static/image/default.webp")';
             } else if (condition === 'Sunny') {
-                backgroundImage = 'url("/static/image/Clear.webp")';
-            } else if (condition === "Cloudy" || condition === "Partly cloudy") {
+                backgroundImage = 'url("/static/image/Sunny.webp")';
+            } else if (condition === "Cloudy" || condition === "Partly cloudy" || condition === "Overcast") {
                 backgroundImage = 'url("/static/image/Clouds.webp")';
             } else if (condition === "Rain" || condition === "Heavy rain") {
                 backgroundImage = 'url("/static/image/Rain.webp")';
