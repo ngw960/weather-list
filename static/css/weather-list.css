@@ -2,9 +2,8 @@
 body {
     margin: 0;
     display: flex;
-    flex-direction: column; /* 기본적으로 세로로 배치 */
-    justify-content: flex-start; /* 콘텐츠를 세로로 배치 */
-    align-items: center; /* 중앙 정렬 */
+    justify-content: center;
+    align-items: center;
     height: 100vh;
     background-size: cover;
     background-position: center;
@@ -15,7 +14,7 @@ body {
 
 /* 왼쪽 상단에 배치될 검색창과 버튼 */
 .address-container {
-    position: absolute;
+    position: absolute; /* 절대 위치 */
     top: 20px;
     left: 20px;
     text-align: left;
@@ -51,15 +50,15 @@ button:hover {
 
 /* 커스텀 입력칸 스타일 */
 .custom-input-container {
-    margin-top: 20px; /* 상단 간격 */
-    width: 80%; /* 화면 너비에 맞게 설정 */
-    display: flex;
-    justify-content: center; /* 중앙 정렬 */
+    position: absolute;
+    top: 10%;
+    left: 50%;
+    transform: translateX(-50%);
+    z-index: 10;
 }
 
 #customInput {
-    width: 100%; /* 너비 100%로 설정 */
-    max-width: 400px; /* 최대 너비 제한 */
+    width: 250px;
     padding: 10px;
     font-size: 18px;
     background: rgba(255, 255, 255, 0.5); /* 투명한 배경 */
@@ -87,7 +86,7 @@ button:hover {
     color: black; /* 텍스트 색상 검은색 */
     width: 100%;
     display: flex;
-    flex-direction: column; /* 세로로 배치 */
+    flex-direction: column;
     align-items: center;
 }
 
@@ -125,86 +124,112 @@ button:hover {
     align-items: center;
 }
 
-/* 적응형 디자인: 화면 크기 변화에 따른 레이아웃 수정 */
-@media (max-width: 1200px) {
-    /* 큰 화면에서 작은 화면으로 넘어갈 때 */
-    input[type="text"], #customInput {
-        width: 80%; /* 화면 크기에 맞게 너비 조정 */
-    }
+/* 반응형 미디어 쿼리 추가 */
 
-    .address-container {
-        left: 10px; /* 왼쪽 여백을 더 줄여서 화면에 맞게 배치 */
-    }
-
-    .custom-input-container {
-        top: 5%; /* 화면 크기에 따라 입력칸 위치 조정 */
-    }
-
-    #location {
-        font-size: 26px; /* 화면 크기에 맞게 지역 이름 크기 축소 */
-    }
-
-    #weather, .weather-info-container p {
-        font-size: 18px; /* 날씨 및 텍스트 크기 축소 */
-    }
-}
-
-@media (max-width: 768px) {
-    /* 중간 크기 화면 (태블릿 등) */
-    input[type="text"], #customInput {
-        width: 90%; /* 태블릿에서 검색창과 입력칸 너비를 90%로 확장 */
-    }
-
-    .address-container {
-        top: 10px; /* 화면 크기에 따라 위치 조금 위로 조정 */
-        left: 5px; /* 왼쪽 여백을 더 줄여서 배치 */
-    }
-
-    #location {
-        font-size: 22px; /* 지역 이름 크기 더 줄임 */
-    }
-
-    #weather, .weather-info-container p {
-        font-size: 16px; /* 날씨 텍스트 크기 더 작게 */
-    }
-
-    .weather-info-container {
-        margin-top: 10px; /* 날씨 정보와 입력칸 간 간격 더 줄임 */
-    }
-}
-
-@media (max-width: 480px) {
-    /* 작은 화면 (모바일 등) */
+/* 모바일 기기 (최대 600px) */
+@media (max-width: 600px) {
     body {
-        flex-direction: column; /* 세로 방향으로 레이아웃 변경 */
-        justify-content: flex-start;
+        flex-direction: column;
+        height: auto;
     }
 
+    /* 왼쪽 상단에 배치될 검색창과 버튼 */
     .address-container {
-        top: 10px;
-        left: 10px;
+        position: relative;
+        top: auto;
+        left: auto;
+        margin-top: 20px;
+        margin-left: 20px;
     }
 
-    .custom-input-container {
-        top: 5%; /* 위치 다시 조정 */
-        left: 50%;
-        transform: translateX(-50%);
+    /* 검색창 스타일 */
+    input[type="text"] {
+        width: 80%;
+        font-size: 14px;
     }
 
-    input[type="text"], #customInput {
-        width: 95%; /* 모바일 화면에서 거의 전체 너비 사용 */
-        font-size: 14px; /* 텍스트 크기 조정 */
-    }
-
-    #location {
-        font-size: 18px; /* 모바일에서 지역 이름 크기 축소 */
-    }
-
-    #weather, .weather-info-container p {
-        font-size: 14px; /* 모바일 화면에서 텍스트 크기 더 줄임 */
-    }
-
-    .weather-info-container {
+    /* 버튼 스타일 */
+    button {
+        width: 80%;
+        font-size: 14px;
         margin-top: 10px;
+    }
+
+    /* 커스텀 입력칸 스타일 */
+    .custom-input-container {
+        top: 5%;
+    }
+
+    #customInput {
+        width: 80%;
+        font-size: 16px;
+    }
+
+    /* 날씨 텍스트 크기 설정 */
+    #weather {
+        font-size: 16px;
+    }
+
+    /* 날씨 정보 출력 영역 */
+    .weather-info-container p {
+        font-size: 16px;
+    }
+
+    /* 지역 이름 텍스트 크기 설정 */
+    #location {
+        font-size: 24px;
+    }
+
+    /* 날짜와 시간 크기 설정 */
+    #current-date, #current-time {
+        font-size: 16px;
+    }
+}
+
+/* 태블릿 (최대 1024px) */
+@media (max-width: 1024px) {
+    .address-container {
+        top: 30px;
+        left: 30px;
+    }
+
+    /* 검색창 스타일 */
+    input[type="text"] {
+        width: 250px;
+    }
+
+    /* 버튼 스타일 */
+    button {
+        width: 250px;
+    }
+
+    /* 커스텀 입력칸 스타일 */
+    .custom-input-container {
+        top: 8%;
+    }
+
+    #customInput {
+        width: 70%;
+        font-size: 16px;
+    }
+
+    /* 날씨 텍스트 크기 설정 */
+    #weather {
+        font-size: 18px;
+    }
+
+    /* 날씨 정보 출력 영역 */
+    .weather-info-container p {
+        font-size: 17px;
+    }
+
+    /* 지역 이름 텍스트 크기 설정 */
+    #location {
+        font-size: 28px;
+    }
+
+    /* 날짜와 시간 크기 설정 */
+    #current-date, #current-time {
+        font-size: 18px;
     }
 }
