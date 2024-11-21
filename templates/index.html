@@ -38,7 +38,7 @@
     </div>
 
     <div class="custom-input-container">
-        <input type="text" id="customInput" placeholder="memo" oninput="saveCustomInput()">
+        <input type="text" id="customInput-2" placeholder="memo" oninput="saveCustomInput()">
     </div>
 
     <!-- 날씨 정보 출력 부분 -->
@@ -83,6 +83,12 @@
             var savedCustomInput = localStorage.getItem('customInput');
             if (savedCustomInput) {
                 document.getElementById('customInput').value = savedCustomInput;
+            }
+
+            // 두 번째 커스텀 입력창에서 저장된 값 불러오기
+            var savedCustomInput2 = localStorage.getItem('customInput-2');
+            if (savedCustomInput2) {
+                document.getElementById('customInput-2').value = savedCustomInput2;
             }
 
             // 현재 날짜 및 시간 표시
