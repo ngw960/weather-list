@@ -22,6 +22,8 @@
     <meta name="theme-color" content="#000000"> <!-- 앱의 테마 색상 -->
     <link rel="manifest" href="{{ url_for('static', path='manifest.json') }}"> <!-- Manifest 파일 링크 -->
     <link rel="icon" href="{{ url_for('static', path='icon/192x192.png') }}" sizes="192x192"> <!-- 앱 아이콘 -->
+
+    <link href="https://fonts.googleapis.com/css2?family=Noto+Sans&display=swap" rel="stylesheet">
     
 </head>
 
@@ -176,17 +178,19 @@
             if (condition === "Clear") {
                 backgroundImage = 'url("/static/image/default.webp")';
             } else if (condition === 'Sunny') {
-                backgroundImage = 'url("/static/image/Sunny.webp")';
+                backgroundImage = 'url("/static/image/sunny.webp")';
             } else if (condition === "Cloudy" || condition === "Partly cloudy" || condition === "Overcast") {
-                backgroundImage = 'url("/static/image/Clouds.webp")';
+                backgroundImage = 'url("/static/image/clouds.webp")';
             } else if (condition === "Rain" || condition === "Heavy rain") {
-                backgroundImage = 'url("/static/image/Rain.webp")';
+                backgroundImage = 'url("/static/image/rain.webp")';
             } else if (condition === 'default') {
                 backgroundImage = 'url("/static/image/default.webp")'; // 기본 이미지
             }
 
             // 배경 이미지 설정
             document.body.style.backgroundImage = backgroundImage;
+            document.body.style.backgroundSize = "cover"; // 배경 이미지를 화면에 맞게 확장
+            document.body.style.backgroundPosition = "center center"; // 배경 이미지 중앙 정렬
         }
 
         // 현재 날짜와 시간을 실시간으로 표시하는 함수
