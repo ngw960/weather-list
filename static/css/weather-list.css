@@ -113,3 +113,24 @@ p {
     margin: 0 5px;
     /* 날짜와 시간 사이 간격 설정 */
 }
+
+/* 모바일에서 배경 고정 해제 */
+@media (max-width: 768px) {
+    body {
+        background-attachment: scroll;  /* 배경이 스크롤에 따라 움직이도록 변경 */
+        background-position: top center;  /* 배경 이미지의 위치를 화면 상단으로 설정 */
+    }
+
+    /* 주소 입력창과 커스텀 입력창의 크기 조정 */
+    input[type="text"] {
+        width: 250px;  /* 모바일 화면에 맞게 너비 조정 */
+    }
+
+    .weather-info-wrapper {
+        padding: 15px;  /* 모바일에서 여백을 좀 더 좁히기 */
+    }
+    
+    .weather-info-container p {
+        font-size: 16px;  /* 모바일 화면에 맞게 폰트 크기 조정 */
+    }
+}
