@@ -33,7 +33,10 @@
         <button type="button" onclick="openDaumPostcode()">주소 찾기</button>
     </div>
 
-    <!-- 새 입력칸 추가 (투명한 입력창) -->
+    <div class="custom-input-container">
+        <input type="text" id="customInput" placeholder="memo" oninput="saveCustomInput()">
+    </div>
+
     <div class="custom-input-container">
         <input type="text" id="customInput" placeholder="memo" oninput="saveCustomInput()">
     </div>
