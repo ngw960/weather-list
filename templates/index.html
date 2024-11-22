@@ -24,7 +24,7 @@
     <link rel="icon" href="{{ url_for('static', path='icon/192x192.png') }}" sizes="192x192"> <!-- 앱 아이콘 -->
 
     <link href="https://fonts.googleapis.com/css2?family=Noto+Sans&display=swap" rel="stylesheet">
-    
+
 </head>
 
 <body>
@@ -105,7 +105,7 @@
         function saveCustomInput() {
             var customInputValue = document.getElementById('customInput').value;
             localStorage.setItem('customInput', customInputValue);
-            
+
             // 두 번째 입력값을 읽고 저장
             var customInputValue2 = document.getElementById('customInput-2').value;
             localStorage.setItem('customInput-2', customInputValue2);
@@ -144,6 +144,9 @@
                     var longitude = result[0].x;
                     var region = result[0].address.region_1depth_name; // 시/도 이름 추출
 
+                    // "특별자치도"를 제거
+                    region = region.replace(/\s*특별자치도$/, '');
+
                     // 지역 이름 출력
                     document.getElementById('location').innerText = region;
 
@@ -154,6 +157,7 @@
                 }
             });
         }
+
 
         // WeatherAPI를 사용해 날씨 정보 가져오기
         function getWeather(latitude, longitude) {
