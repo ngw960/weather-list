@@ -28,6 +28,10 @@
 </head>
 
 <body>
+    <div class="location-container">
+        <p id="location"></p> <!-- 지역 이름 출력 -->
+    </div>
+
     <div class="address-container">
         <input type="text" id="UserAddress" name="UserAddress" placeholder="주소를 입력해 주세요" required hidden>
         <button type="button" onclick="openDaumPostcode()">주소 찾기</button>
@@ -35,16 +39,15 @@
 
     <div class="custom-input-container">
         <input type="text" id="customInput" placeholder="memo" oninput="saveCustomInput()">
-    </div>
-
-    <div class="custom-input-container">
         <input type="text" id="customInput-2" placeholder="memo" oninput="saveCustomInput()">
     </div>
 
     <!-- 날씨 정보 출력 부분 -->
     <div class="weather-info-container">
-        <p id="location"></p> <!-- 지역 이름 출력 -->
         <p id="weather"></p> <!-- 날씨 정보 출력 -->
+    </div>
+
+    <div class="current-date-container">
         <p id="current-date"></p> <!-- 현재 날짜 출력 -->
         <p id="current-time"></p> <!-- 현재 시간 출력 -->
     </div>
@@ -155,14 +158,16 @@
         // WeatherAPI를 사용해 날씨 정보 가져오기
         function getWeather(latitude, longitude) {
             var apiKey = 'd1d80799329d482a8ea115148241111';
-            var url = `https://api.weatherapi.com/v1/current.json?key=${apiKey}&q=${latitude},${longitude}&aqi=no`;
+            var url = `https://api.weatherapi.com/v1/forecast.json?key=${apiKey}&q=${latitude},${longitude}&days=1&aqi=no`;
 
             fetch(url)
                 .then(response => response.json())
                 .then(data => {
-                    if (data && data.current) {
+                    if (data && data.current && data.forecast && data.forecast.forecastday[0]) {
                         var temperature = data.current.temp_c; // 섭씨 온도
                         var condition = data.current.condition.text; // 날씨 상태
+                        var max_temp = data.forecast.forecastday[0].day.maxtemp_c;
+                        var min_temp = data.forecast.forecastday[0].day.mintemp_c;
 
                         // 날씨 상태에 따른 배경 이미지 변경
                         changeBackgroundImage(condition);
@@ -170,6 +175,7 @@
                         // 날씨 정보 출력
                         document.getElementById('weather').innerHTML = `
                             ${temperature}°C<br>
+                            ${max_temp}° / ${min_temp}°<br>
                             ${condition}<br>
                         `;
                     } else {
