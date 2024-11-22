@@ -39,7 +39,8 @@ body {
 #customInput, #customInput-2 {
     padding: 10px;
     margin: 5px 0;
-    width: 300px; /* 기본 입력창 너비 */
+    width: 100%; /* 입력창 너비를 화면의 100%로 설정 */
+    max-width: 500px; /* 최대 너비 제한 (500px 등으로 설정) */
     font-size: 16px;
     text-align: center;
     background-color: transparent;
@@ -124,7 +125,8 @@ p {
     }
 
     #customInput, #customInput-2 {
-        width: 70%; /* 입력창 너비를 화면의 70%로 조정 */
+        width: 90%; /* 입력창 너비를 화면의 90%로 설정 */
+        max-width: 400px; /* 최대 너비를 400px로 설정 */
         font-size: 14px; /* 작은 화면에서 폰트 크기 축소 */
     }
 
@@ -161,7 +163,8 @@ p {
     }
 
     #customInput, #customInput-2 {
-        width: 70%; /* 모바일에서 입력창 너비를 70%로 설정 */
+        width: 90%; /* 모바일에서 입력창 너비를 90%로 설정 */
+        max-width: 350px; /* 최대 너비를 350px로 설정 */
         font-size: 12px; /* 폰트 크기 더 축소 */
     }
 
