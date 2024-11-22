@@ -117,6 +117,8 @@ p {
 @media (max-width: 768px) {
     .location-container p {
         font-size: 35px; /* 작은 화면에서 지역 이름 폰트 크기 축소 */
+        font-weight: bold; /* 볼드체 적용 */
+        font-family: 'Noto Sans', sans-serif; /* Noto Sans 적용 */
     }
 
     .custom-input-container {
@@ -127,14 +129,19 @@ p {
         width: 360px; /* 입력창 너비를 화면의 90%로 설정 */
         max-width: 400px; /* 최대 너비를 350px로 설정 */
         font-size: 14px; /* 작은 화면에서 폰트 크기 축소 */
+        font-family: 'Noto Sans', sans-serif; /* Noto Sans 적용 */
     }
 
     .weather-info-container p {
         font-size: 30px; /* 날씨 정보의 폰트 크기 축소 */
+        font-weight: bold; /* 볼드체 적용 */
+        font-family: 'Noto Sans', sans-serif; /* Noto Sans 적용 */
     }
 
     .current-date-container p {
-        font-size: 20px; /* 날짜 폰트 크기 축소 */
+        font-size: 25px; /* 날짜 폰트 크기 축소 */
+        font-weight: bold; /* 볼드체 적용 */
+        font-family: 'Noto Sans', sans-serif; /* Noto Sans 적용 */
     }
 
     button {
@@ -144,17 +151,23 @@ p {
 
     p {
         font-size: 16px; /* 일반 텍스트 폰트 크기 축소 */
+        font-weight: bold; /* 볼드체 적용 */
+        font-family: 'Noto Sans', sans-serif; /* Noto Sans 적용 */
     }
 
     #current-date,
     #current-time {
-        font-size: 20px; /* 날짜와 시간 크기 축소 */
+        font-size: 25px; /* 날짜와 시간 크기 축소 */
+        font-weight: bold; /* 볼드체 적용 */
+        font-family: 'Noto Sans', sans-serif; /* Noto Sans 적용 */
     }
 }
 
 @media (max-width: 480px) {
     .location-container p {
         font-size: 30px; /* 더 작은 화면에서는 지역 이름 폰트 크기 더 축소 */
+        font-weight: bold; /* 볼드체 적용 */
+        font-family: 'Noto Sans', sans-serif; /* Noto Sans 적용 */
     }
 
     .custom-input-container {
@@ -165,14 +178,19 @@ p {
         width: 315px; /* 모바일에서 입력창 너비를 90%로 설정 */
         max-width: 350px; /* 최대 너비를 350px로 설정 */
         font-size: 12px; /* 폰트 크기 더 축소 */
+        font-family: 'Noto Sans', sans-serif; /* Noto Sans 적용 */
     }
 
     .weather-info-container p {
         font-size: 25px; /* 날씨 정보의 폰트 크기 더 축소 */
+        font-weight: bold; /* 볼드체 적용 */
+        font-family: 'Noto Sans', sans-serif; /* Noto Sans 적용 */
     }
 
     .current-date-container p {
-        font-size: 17px; /* 날짜 폰트 크기 더 축소 */
+        font-size: 20px; /* 날짜 폰트 크기 더 축소 */
+        font-weight: bold; /* 볼드체 적용 */
+        font-family: 'Noto Sans', sans-serif; /* Noto Sans 적용 */
     }
 
     button {
@@ -182,10 +200,14 @@ p {
 
     p {
         font-size: 14px; /* 일반 텍스트 폰트 크기 더 축소 */
+        font-weight: bold; /* 볼드체 적용 */
+        font-family: 'Noto Sans', sans-serif; /* Noto Sans 적용 */
     }
 
     #current-date,
     #current-time {
-        font-size: 17px; /* 날짜와 시간 크기 더 축소 */
+        font-size: 20px; /* 날짜와 시간 크기 더 축소 */
+        font-weight: bold; /* 볼드체 적용 */
+        font-family: 'Noto Sans', sans-serif; /* Noto Sans 적용 */
     }
 }
