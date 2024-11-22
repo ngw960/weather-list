@@ -14,7 +14,6 @@
 
 WeatherList 앱은 웹에서 바로 사용하거나, 모바일/데스크탑에 설치하여 이용할 수 있습니다. 앱을 설치하려면 아래 링크를 클릭하세요:
 
-[WeatherList 앱 사용하기](https://ngw960.vercel.app)
 URL : https://ngw960.vercel.app
 
 ## 설치 방법
