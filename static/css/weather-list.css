@@ -39,8 +39,7 @@ body {
 #customInput, #customInput-2 {
     padding: 10px;
     margin: 5px 0;
-    width: 100%; /* 입력창 너비를 화면의 100%로 설정 */
-    max-width: 500px; /* 최대 너비 제한 (500px 등으로 설정) */
+    width: 700px;
     font-size: 16px;
     text-align: center;
     background-color: transparent;
@@ -85,7 +84,7 @@ body {
 
 .current-date-container p {
     margin: 10px 0;
-    font-size: 20px;
+    font-size: 30px;
 }
 
 button {
@@ -125,8 +124,8 @@ p {
     }
 
     #customInput, #customInput-2 {
-        width: 90%; /* 입력창 너비를 화면의 90%로 설정 */
-        max-width: 400px; /* 최대 너비를 400px로 설정 */
+        width: 360px; /* 입력창 너비를 화면의 90%로 설정 */
+        max-width: 400px; /* 최대 너비를 350px로 설정 */
         font-size: 14px; /* 작은 화면에서 폰트 크기 축소 */
     }
 
@@ -135,7 +134,7 @@ p {
     }
 
     .current-date-container p {
-        font-size: 16px; /* 날짜 폰트 크기 축소 */
+        font-size: 20px; /* 날짜 폰트 크기 축소 */
     }
 
     button {
@@ -149,7 +148,7 @@ p {
 
     #current-date,
     #current-time {
-        font-size: 16px; /* 날짜와 시간 크기 축소 */
+        font-size: 20px; /* 날짜와 시간 크기 축소 */
     }
 }
 
@@ -163,7 +162,7 @@ p {
     }
 
     #customInput, #customInput-2 {
-        width: 90%; /* 모바일에서 입력창 너비를 90%로 설정 */
+        width: 315px; /* 모바일에서 입력창 너비를 90%로 설정 */
         max-width: 350px; /* 최대 너비를 350px로 설정 */
         font-size: 12px; /* 폰트 크기 더 축소 */
     }
@@ -173,7 +172,7 @@ p {
     }
 
     .current-date-container p {
-        font-size: 14px; /* 날짜 폰트 크기 더 축소 */
+        font-size: 17px; /* 날짜 폰트 크기 더 축소 */
     }
 
     button {
@@ -187,6 +186,6 @@ p {
 
     #current-date,
     #current-time {
-        font-size: 14px; /* 날짜와 시간 크기 더 축소 */
+        font-size: 17px; /* 날짜와 시간 크기 더 축소 */
     }
 }
