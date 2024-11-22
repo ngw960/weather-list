@@ -160,6 +160,7 @@ p {
 
     #customInput, #customInput-2 {
         width: 250px; /* 모바일 화면에 맞게 커스텀 입력창 너비 조정 */
+        text-align: center;
         border: 2px solid black;  /* 테두리 유지 */
         font-family: 'Noto Sans', sans-serif;  /* 모바일에서도 Noto Sans 적용 */
     }
