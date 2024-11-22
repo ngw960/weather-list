@@ -38,7 +38,7 @@
     </div>
 
     <div class="custom-input-container">
-        <input type="text" id="customInput-2" placeholder="memo_2" oninput="saveCustomInput()">
+        <input type="text" id="customInput-2" placeholder="memo" oninput="saveCustomInput()">
     </div>
 
     <!-- 날씨 정보 출력 부분 -->
@@ -102,6 +102,10 @@
         function saveCustomInput() {
             var customInputValue = document.getElementById('customInput').value;
             localStorage.setItem('customInput', customInputValue);
+            
+            // 두 번째 입력값을 읽고 저장
+            var customInputValue2 = document.getElementById('customInput-2').value;
+            localStorage.setItem('customInput-2', customInputValue2);
         }
 
         // 주소 찾기 버튼 클릭 시 다음 주소 검색 API 실행
